@@ -477,104 +477,6 @@
     content:""; width:36px; height:1px; background:var(--brass-dim);
   }
 
-  /* ---------- PRINT / QR MATERIALS ---------- */
-  .print-section{
-    max-width:1320px; margin:0 auto;
-    padding: 90px 48px;
-    border-top:1px solid var(--line);
-    display:grid; grid-template-columns: 0.92fr 1.08fr; gap:72px;
-    align-items:center;
-  }
-  .print-copy .index{
-    font-family:var(--mono); font-size:11px; letter-spacing:0.4em;
-    color:var(--brass); text-transform:uppercase; margin-bottom:18px;
-    display:flex; align-items:center; gap:14px;
-  }
-  .print-copy .index::before{ content:""; width:5px; height:5px; border-radius:50%; background:var(--brass); }
-  .print-copy h2{
-    font-family:var(--serif); font-weight:400;
-    font-size: clamp(42px, 5vw, 76px);
-    line-height:1; letter-spacing:-0.01em;
-  }
-  .print-copy h2 em{ color:var(--brass); font-style:italic; }
-  .print-copy p{
-    margin-top:24px; max-width:430px;
-    color:var(--text-mute); font-size:14px; line-height:1.7;
-  }
-  .print-board{
-    position:relative;
-    padding:32px;
-    min-height:420px;
-    border:1px solid var(--line);
-    background:
-      linear-gradient(135deg, rgba(201,168,106,0.08), transparent 36%),
-      linear-gradient(180deg, #17140F 0%, #0F0D0A 100%);
-    overflow:hidden;
-  }
-  .print-board::before{
-    content:""; position:absolute; inset:16px;
-    border:1px solid rgba(201,168,106,0.18);
-    pointer-events:none;
-  }
-  .print-board::after{
-    content:""; position:absolute; right:-80px; bottom:-90px;
-    width:260px; height:260px;
-    border:1px solid rgba(201,168,106,0.18);
-    transform:rotate(12deg);
-  }
-  .print-kicker{
-    position:relative; z-index:2;
-    font-family:var(--mono); font-size:10px; letter-spacing:0.34em;
-    text-transform:uppercase; color:var(--brass);
-    display:flex; align-items:center; justify-content:space-between; gap:20px;
-    padding-bottom:22px; border-bottom:1px solid var(--line);
-  }
-  .print-kicker span:last-child{ color:var(--text-dim); }
-  .print-list{
-    position:relative; z-index:2;
-    margin-top:20px;
-    display:flex; flex-direction:column;
-  }
-  .print-option{
-    display:grid; grid-template-columns:44px 1fr auto;
-    gap:18px; align-items:center;
-    padding:22px 0;
-    border-bottom:1px solid var(--line);
-  }
-  .print-option:last-child{ border-bottom:none; }
-  .print-option .num{
-    width:34px; height:34px; border-radius:50%;
-    border:1px solid var(--brass-dim);
-    display:flex; align-items:center; justify-content:center;
-    font-family:var(--mono); font-size:10px; color:var(--brass);
-    background:rgba(14,13,11,0.48);
-  }
-  .print-option h3{
-    font-family:var(--serif); font-size:30px; line-height:1;
-    font-weight:500; color:var(--text);
-  }
-  .print-option h3 em{ font-style:italic; color:var(--brass-bright); font-weight:400; }
-  .print-option .meta{
-    font-family:var(--mono); font-size:9px; letter-spacing:0.24em;
-    text-transform:uppercase; color:var(--text-dim);
-    white-space:nowrap;
-  }
-  .qr-mark{
-    position:absolute; z-index:1; right:34px; bottom:34px;
-    width:78px; height:78px; opacity:0.18;
-    background:
-      linear-gradient(90deg, var(--brass) 10px, transparent 10px 18px, var(--brass) 18px 28px, transparent 28px),
-      linear-gradient(var(--brass) 10px, transparent 10px 18px, var(--brass) 18px 28px, transparent 28px);
-    background-size:28px 28px;
-  }
-  @media (max-width: 880px){
-    .print-section{ grid-template-columns:1fr; padding:56px 24px; gap:34px; }
-    .print-board{ padding:24px; min-height:auto; }
-    .print-option{ grid-template-columns:36px 1fr; gap:14px; }
-    .print-option .meta{ grid-column:2; }
-    .print-option h3{ font-size:25px; }
-  }
-
   /* ---------- HOURS / FOOTER ---------- */
   .hours-section{
     max-width:1320px; margin:0 auto;
@@ -655,7 +557,6 @@
       <a href="#sallader">Sallader</a>
       <a href="#sma">Små &amp; Söta</a>
       <a href="#dryck">Dryck</a>
-      <a href="#print">Print</a>
     </nav>
     <a class="top-cta" href="#hours">Boka Bord</a>
   </div>
@@ -1102,49 +1003,6 @@
       <div class="small-item"><div class="nm">Pärlande <em>· 0,2 l</em></div><div class="pr">89</div></div>
     </div>
 
-  </div>
-</section>
-
-<!-- ============ PRINT / QR MATERIALS ============ -->
-<section class="print-section" id="print">
-  <div class="print-copy">
-    <div class="index">Menu studio</div>
-    <h2>Digitalt möter<br/><em>tryckt</em>.</h2>
-    <p>Kompletterande material för restaurangen, bordet och takeaway-flödet. Samma visuella uttryck, färdigt för QR, print och service.</p>
-  </div>
-  <div class="print-board">
-    <div class="print-kicker">
-      <span>Restaurant assets</span>
-      <span>PDF / QR</span>
-    </div>
-    <div class="print-list">
-      <div class="print-option">
-        <span class="num">01</span>
-        <h3>A4 / A3 <em>menyer</em></h3>
-        <span class="meta">In-house</span>
-      </div>
-      <div class="print-option">
-        <span class="num">02</span>
-        <h3><em>Bordskort</em></h3>
-        <span class="meta">Table QR</span>
-      </div>
-      <div class="print-option">
-        <span class="num">03</span>
-        <h3>Take-away <em>menyer</em></h3>
-        <span class="meta">Pickup</span>
-      </div>
-      <div class="print-option">
-        <span class="num">04</span>
-        <h3>QR-<em>inlägg</em></h3>
-        <span class="meta">Social</span>
-      </div>
-      <div class="print-option">
-        <span class="num">05</span>
-        <h3>Print-ready <em>PDF</em></h3>
-        <span class="meta">Export</span>
-      </div>
-    </div>
-    <div class="qr-mark" aria-hidden="true"></div>
   </div>
 </section>
 
