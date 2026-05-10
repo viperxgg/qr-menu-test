@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nr. 72 — Mat & Bar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:        #0E0D0B;
+    --bg-soft:   #15130F;
+    --surface:   #1A1816;
+    --line:      #2A2620;
+    --text:      #F4EFE6;
+    --text-mute: #8E8579;
+    --text-dim:  #5C5650;
+    --brass:     #C9A86A;
+    --brass-dim: #8a7548;
+    --brass-bright: #E5C684;
+    --serif: "Cormorant Garamond", "Times New Roman", serif;
+    --sans:  "Inter Tight", system-ui, sans-serif;
+    --mono:  "JetBrains Mono", ui-monospace, monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html, body{background:var(--bg); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased;}
+  body{
+    font-weight:300;
+    line-height:1.5;
+    background:
+      radial-gradient(1200px 700px at 80% -10%, rgba(201,168,106,0.08), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(201,168,106,0.05), transparent 60%),
+      var(--bg);
+    background-attachment: fixed;
+  }
+  ::selection{background:var(--brass); color:#0E0D0B;}
+
+  /* ---------- HEADER ---------- */
+  header.top{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    background:rgba(14,13,11,0.72);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{
+    max-width:1320px; margin:0 auto;
+    padding:18px 48px;
+    display:flex; align-items:center; justify-content:space-between; gap:32px;
+  }
+  .wordmark{
+    display:flex; align-items:baseline; gap:10px;
+    font-family:var(--serif); font-weight:500; letter-spacing:0.02em;
+  }
+  .wordmark .nr{ font-size:22px; color:var(--text); font-style:italic; }
+  .wordmark .num{ font-size:24px; color:var(--brass); }
+  .wordmark .div{ width:1px; height:18px; background:var(--line); margin:0 8px; align-self:center;}
+  .wordmark .sub{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.34em;
+    text-transform:uppercase; color:var(--text-mute); font-weight:400;
+  }
+  nav.cats{ display:flex; gap:34px; }
+  nav.cats a{
+    font-family:var(--mono); text-decoration:none; color:var(--text-mute);
+    font-size:11px; letter-spacing:0.28em; text-transform:uppercase;
+    padding:6px 0; position:relative; transition: color .3s;
+  }
+  nav.cats a:hover{ color:var(--text); }
+  nav.cats a::after{
+    content:""; position:absolute; left:0; bottom:0; height:1px; width:0;
+    background:var(--brass); transition: width .35s ease;
+  }
+  nav.cats a:hover::after{ width:100%; }
+  .top-cta{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.24em;
+    text-transform:uppercase; color:var(--brass);
+    padding:10px 18px; border:1px solid var(--brass-dim);
+    text-decoration:none; transition: all .3s;
+  }
+  .top-cta:hover{ background:var(--brass); color:#0E0D0B; border-color:var(--brass); }
+
+  @media (max-width: 980px){
+    nav.cats{ display:none; }
+    .top-inner{ padding:14px 24px; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    max-width:1320px; margin:0 auto;
+    padding: 120px 48px 80px;
+    display:grid; grid-template-columns: 1.1fr 0.9fr; gap:80px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.4em;
+    text-transform:uppercase; color:var(--brass); margin-bottom:28px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .eyebrow::before{ content:""; width:36px; height:1px; background:var(--brass); }
+  h1.hero-title{
+    font-family:var(--serif); font-weight:400;
+    font-size: clamp(56px, 8vw, 132px);
+    line-height:0.95; letter-spacing:-0.02em;
+    color:var(--text);
+  }
+  h1.hero-title em{
+    font-style:italic; color:var(--brass); font-weight:400;
+  }
+  .hero-tag{
+    margin-top:36px; max-width:440px;
+    font-size:16px; line-height:1.7; color:var(--text-mute);
+    font-weight:300;
+  }
+  .hero-meta{
+    margin-top:48px; display:flex; gap:56px;
+  }
+  .hero-meta .cell .k{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.3em;
+    text-transform:uppercase; color:var(--text-dim); margin-bottom:8px;
+  }
+  .hero-meta .cell .v{
+    font-family:var(--serif); font-size:22px; color:var(--text); font-weight:400;
+  }
+  .hero-meta .cell .v small{
+    font-family:var(--mono); font-size:11px; color:var(--text-mute);
+    letter-spacing:0.1em; margin-left:6px;
+  }
+
+  /* hero image plate */
+  .hero-plate{
+    position:relative; aspect-ratio: 4/5;
+    background: linear-gradient(135deg, #1d1a16 0%, #0f0d0a 100%);
+    border:1px solid var(--line);
+    overflow:hidden;
+  }
+  .hero-plate .image-slot{
+    position:absolute; inset:0;
+    background:
+      repeating-linear-gradient(135deg, rgba(201,168,106,0.04) 0 2px, transparent 2px 12px),
+      radial-gradient(closest-side at 60% 40%, rgba(201,168,106,0.18), transparent 70%),
+      linear-gradient(180deg, #1f1c17 0%, #0c0a08 100%);
+    display:flex; align-items:flex-end; justify-content:flex-start;
+    padding:24px;
+  }
+  .hero-plate .slot-label{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.3em;
+    text-transform:uppercase; color:var(--text-dim);
+    border:1px solid var(--line); padding:8px 12px;
+    background:rgba(14,13,11,0.6);
+  }
+  .hero-plate .corner-mark{
+    position:absolute; top:24px; right:24px;
+    font-family:var(--mono); font-size:10px; letter-spacing:0.3em;
+    color:var(--brass); text-transform:uppercase;
+    display:flex; align-items:center; gap:10px;
+  }
+  .hero-plate .corner-mark::after{
+    content:""; width:24px; height:1px; background:var(--brass-dim);
+  }
+  .hero-plate::before, .hero-plate::after{
+    content:""; position:absolute; width:18px; height:18px; border:1px solid var(--brass);
+  }
+  .hero-plate::before{ top:10px; left:10px; border-right:none; border-bottom:none; }
+  .hero-plate::after{ bottom:10px; right:10px; border-left:none; border-top:none; }
+
+  @media (max-width: 880px){
+    .hero{ grid-template-columns:1fr; padding: 60px 24px; gap: 48px;}
+    .hero-meta{ gap:32px; flex-wrap:wrap;}
+  }
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  section.cat{
+    max-width:1320px; margin:0 auto;
+    padding: 80px 48px;
+    border-top: 1px solid var(--line);
+  }
+  .cat-head{
+    display:grid; grid-template-columns: 1fr auto;
+    align-items:end; gap:48px; margin-bottom:64px;
+  }
+  .cat-head .titles .index{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.4em;
+    color:var(--brass); text-transform:uppercase; margin-bottom:18px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .cat-head .titles .index .dot{ width:5px; height:5px; background:var(--brass); border-radius:50%;}
+  .cat-head h2{
+    font-family:var(--serif); font-weight:400;
+    font-size: clamp(40px, 5vw, 72px);
+    letter-spacing:-0.01em; line-height:1; color:var(--text);
+  }
+  .cat-head h2 em{ font-style:italic; color:var(--brass);}
+  .cat-head .sub{
+    max-width:380px; font-size:14px; color:var(--text-mute); line-height:1.6;
+    text-align:right; padding-bottom:8px;
+  }
+  @media (max-width: 880px){
+    section.cat{ padding: 56px 24px;}
+    .cat-head{ grid-template-columns:1fr; gap:24px; margin-bottom:40px;}
+    .cat-head .sub{ text-align:left;}
+  }
+
+  /* ---------- ITEM ROWS ---------- */
+  .items{ display:flex; flex-direction:column; }
+  .item{
+    display:grid; grid-template-columns: 1fr auto;
+    gap: 32px; align-items:baseline;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+    position:relative;
+  }
+  .item:last-child{ border-bottom:none;}
+  .item .name-row{ display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;}
+  .item h3{
+    font-family:var(--serif); font-weight:500;
+    font-size:28px; letter-spacing:-0.005em; color:var(--text);
+    line-height:1.1;
+  }
+  .item h3 em{ font-style:italic; color:var(--brass-bright); font-weight:400;}
+  .tag{
+    font-family:var(--mono); font-size:9px; letter-spacing:0.24em;
+    text-transform:uppercase; color:var(--brass);
+    border:1px solid var(--brass-dim); padding:3px 8px;
+    transform: translateY(-3px);
+  }
+  .tag.veg{ color:#A6C49F; border-color:#4d6447;}
+  .tag.spicy{ color:#E0876B; border-color:#7a4a3a;}
+  .item .desc{
+    margin-top:10px; max-width:560px;
+    font-size:13.5px; color:var(--text-mute); line-height:1.65;
+    font-weight:300;
+  }
+  .item .meta{
+    margin-top:10px;
+    font-family:var(--mono); font-size:10px; letter-spacing:0.22em;
+    text-transform:uppercase; color:var(--text-dim);
+  }
+  .price{
+    font-family:var(--serif); font-size:26px; color:var(--brass);
+    font-weight:500; letter-spacing:0.01em; white-space:nowrap;
+    align-self:flex-start;
+  }
+  .price .sep{ color:var(--text-dim); margin:0 4px; font-weight:300;}
+  .price .unit{
+    font-family:var(--mono); font-size:11px; color:var(--text-mute);
+    letter-spacing:0.18em; margin-left:6px; text-transform:uppercase;
+    font-weight:400;
+  }
+
+  /* ---------- FEATURED CARD (one per section, optional) ---------- */
+  .feature{
+    grid-column: 1 / -1;
+    display:grid; grid-template-columns: 280px 1fr auto;
+    gap: 36px; align-items:center;
+    padding: 28px 28px 28px 28px;
+    background: linear-gradient(180deg, #16140F 0%, #100E0B 100%);
+    border:1px solid var(--line);
+    margin: 12px 0;
+    position:relative;
+  }
+  .feature::before{
+    content:""; position:absolute; top:0; left:0; width:60px; height:1px;
+    background: var(--brass);
+  }
+  .feature .photo{
+    aspect-ratio: 4/3;
+    background:
+      repeating-linear-gradient(135deg, rgba(201,168,106,0.05) 0 2px, transparent 2px 14px),
+      radial-gradient(closest-side at 50% 45%, rgba(201,168,106,0.2), transparent 70%),
+      #100E0B;
+    border:1px solid var(--line); position:relative;
+    display:flex; align-items:flex-end; padding:14px;
+  }
+  .feature .photo .slot-label{
+    font-family:var(--mono); font-size:9px; letter-spacing:0.3em;
+    text-transform:uppercase; color:var(--text-dim);
+    background:rgba(14,13,11,0.7); padding:6px 10px; border:1px solid var(--line);
+  }
+  .feature .label{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.36em;
+    text-transform:uppercase; color:var(--brass); margin-bottom:14px;
+  }
+  .feature h3{ font-family:var(--serif); font-size:34px; font-weight:500; color:var(--text); line-height:1.05;}
+  .feature h3 em{ font-style:italic; color:var(--brass-bright); font-weight:400;}
+  .feature p{
+    margin-top:14px; max-width:460px;
+    font-size:14px; color:var(--text-mute); line-height:1.65;
+  }
+  @media (max-width: 880px){
+    .feature{ grid-template-columns:1fr; gap:20px;}
+    .feature .photo{ aspect-ratio: 16/10;}
+  }
+
+  /* ---------- DUAL-COLUMN ITEMS (Drinks) ---------- */
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap: 0 64px;}
+  @media (max-width: 880px){ .grid-2{ grid-template-columns:1fr; gap:0;} }
+
+  .col-head{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.36em;
+    text-transform:uppercase; color:var(--brass);
+    padding-bottom:14px; border-bottom:1px solid var(--brass-dim);
+    margin-bottom:8px;
+    display:flex; justify-content:space-between; align-items:baseline;
+  }
+  .col-head span.idx{ color:var(--text-dim); font-weight:300;}
+  .small-item{
+    display:grid; grid-template-columns:1fr auto; gap:16px;
+    padding:16px 0; border-bottom:1px solid var(--line);
+    align-items:baseline;
+  }
+  .small-item:last-child{ border-bottom:none;}
+  .small-item .nm{ font-family:var(--serif); font-size:18px; color:var(--text); font-weight:400;}
+  .small-item .nm em{ font-style:italic; color:var(--text-mute); font-size:14px; margin-left:6px;}
+  .small-item .pr{
+    font-family:var(--mono); font-size:13px; letter-spacing:0.06em;
+    color:var(--brass); white-space:nowrap;
+  }
+
+  /* ---------- INTERMISSION QUOTE ---------- */
+  .quote{
+    max-width:1320px; margin:0 auto;
+    padding: 100px 48px;
+    text-align:center;
+    border-top:1px solid var(--line);
+  }
+  .quote .mark{
+    font-family:var(--serif); font-style:italic; color:var(--brass);
+    font-size:48px; line-height:1; margin-bottom:24px;
+  }
+  .quote q{
+    font-family:var(--serif); font-style:italic; font-weight:300;
+    font-size: clamp(28px, 3.5vw, 48px);
+    color:var(--text); line-height:1.3; quotes:none;
+    display:block; max-width:880px; margin:0 auto;
+    letter-spacing:-0.005em;
+  }
+  .quote .attr{
+    margin-top:36px;
+    font-family:var(--mono); font-size:11px; letter-spacing:0.36em;
+    text-transform:uppercase; color:var(--text-mute);
+    display:flex; align-items:center; justify-content:center; gap:14px;
+  }
+  .quote .attr::before, .quote .attr::after{
+    content:""; width:36px; height:1px; background:var(--brass-dim);
+  }
+
+  /* ---------- HOURS / FOOTER ---------- */
+  .hours-section{
+    max-width:1320px; margin:0 auto;
+    padding: 80px 48px;
+    border-top:1px solid var(--line);
+    display:grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items:start;
+  }
+  .hours-section h2{
+    font-family:var(--serif); font-size: clamp(40px, 5vw, 64px);
+    font-weight:400; line-height:1; letter-spacing:-0.01em;
+  }
+  .hours-section h2 em{ font-style:italic; color:var(--brass);}
+  .hours-section .sub{
+    margin-top:20px; max-width:340px;
+    font-size:14px; color:var(--text-mute); line-height:1.65;
+  }
+  .hours-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 0 48px;}
+  .day{
+    display:grid; grid-template-columns:1fr auto;
+    align-items:baseline; padding:16px 0; border-bottom:1px solid var(--line);
+  }
+  .day .d{ font-family:var(--serif); font-size:18px; color:var(--text); font-weight:400; letter-spacing:0.02em;}
+  .day .h{
+    font-family:var(--mono); font-size:12px; color:var(--brass);
+    letter-spacing:0.15em;
+  }
+  .day .h.closed{ color:var(--text-dim);}
+  @media (max-width: 880px){
+    .hours-section{ grid-template-columns:1fr; padding: 56px 24px; gap:36px;}
+    .hours-grid{ grid-template-columns:1fr;}
+  }
+
+  footer.foot{
+    border-top:1px solid var(--line);
+    padding: 56px 48px 80px;
+    max-width:1320px; margin: 0 auto;
+    display:grid; grid-template-columns: 1fr 1fr 1fr; gap:48px;
+    color:var(--text-mute); font-size:13px;
+  }
+  footer.foot .col h4{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.36em;
+    text-transform:uppercase; color:var(--brass); margin-bottom:18px;
+    font-weight:500;
+  }
+  footer.foot .col p{ line-height:1.7;}
+  footer.foot .signoff{
+    grid-column:1 / -1; margin-top:32px; padding-top:32px;
+    border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:var(--mono); font-size:10px; letter-spacing:0.3em;
+    text-transform:uppercase; color:var(--text-dim);
+  }
+  footer.foot .signoff .njut{
+    font-family:var(--serif); font-style:italic; font-size:22px;
+    text-transform:none; letter-spacing:0; color:var(--brass);
+  }
+  @media (max-width: 880px){
+    footer.foot{ grid-template-columns:1fr; padding: 40px 24px 64px;}
+    footer.foot .signoff{ flex-direction:column; gap:20px; text-align:center;}
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="top">
+  <div class="top-inner">
+    <div class="wordmark">
+      <span class="nr">Nr.</span><span class="num">72</span>
+      <span class="div"></span>
+      <span class="sub">Mat &amp; Bar &nbsp;·&nbsp; Backe</span>
+    </div>
+    <nav class="cats">
+      <a href="#burger">Smash Burger</a>
+      <a href="#pizza">Pizza Neapoli</a>
+      <a href="#special">Special</a>
+      <a href="#sallader">Sallader</a>
+      <a href="#sma">Små &amp; Söta</a>
+      <a href="#dryck">Dryck</a>
+    </nav>
+    <a class="top-cta" href="#hours">Boka Bord</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div>
+    <div class="eyebrow">Meny &nbsp;·&nbsp; Vinter 2026</div>
+    <h1 class="hero-title">Eldad,&nbsp;<em>elegant</em><br/>och alltid&nbsp;ärlig.</h1>
+    <p class="hero-tag">Svensk värdshuskänsla mött av italienskt eldhantverk och amerikansk
+      smash-precision. Smaker som värmer i en sal som dämpas av ljus.</p>
+    <div class="hero-meta">
+      <div class="cell">
+        <div class="k">Kök</div>
+        <div class="v">Nordic &middot; Italo</div>
+      </div>
+      <div class="cell">
+        <div class="k">Stämning</div>
+        <div class="v">Bistro &middot; Bar</div>
+      </div>
+      <div class="cell">
+        <div class="k">Sedan</div>
+        <div class="v">2024 <small>Backe, SE</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-plate">
+    <div class="corner-mark">Hus &nbsp;Specialitet</div>
+    <div class="image-slot">
+      <div class="slot-label">[ photo &mdash; backe meal, top-down, dim warm key light ]</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SMASH BURGER ============ -->
+<section class="cat" id="burger">
+  <div class="cat-head">
+    <div class="titles">
+      <div class="index"><span class="dot"></span> Kapitel I &nbsp;/&nbsp; 04</div>
+      <h2>Smash <em>Burger</em></h2>
+    </div>
+    <div class="sub">Tunna, högt brynta biffar pressade på het stålplåt &mdash; sprödbränd kant, saftig kärna. Alla menyer serveras med crispy fries.</div>
+  </div>
+
+  <div class="items">
+
+    <div class="feature">
+      <div class="photo">
+        <div class="slot-label">[ hero shot &mdash; backe meal, 45° angle ]</div>
+      </div>
+      <div>
+        <div class="label">Husets Signatur</div>
+        <h3>Backe <em>Meal</em></h3>
+        <p>American cheddar, krispig bacon, BBQ, tryffeldressing, ketchup, senap,
+          karamelliserad lök, tomat och sallad &mdash; mellan ett briochebröd som rostas á la minute.</p>
+      </div>
+      <div class="price">130<span class="sep">/</span>140<span class="unit">kr</span></div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="name-row">
+          <h3>Backe Meal <em>Spicy</em></h3>
+          <span class="tag spicy">Spicy</span>
+        </div>
+        <div class="desc">Vår Backe Meal lyft med picklade jalapeños och en strimma extra hetta i tryffeldressingen.</div>
+        <div class="meta">90 / 150 g &nbsp;·&nbsp; Brioche</div>
+      </div>
+      <div class="price">140<span class="sep">/</span>150<span class="unit">kr</span></div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="name-row">
+          <h3>Nr.72 <em>Special</em></h3>
+        </div>
+        <div class="desc">Pepper Jack, bacon, mayo, stark Mexicana-dressing, knaperstekta nachos, tomat, sallad.</div>
+        <div class="meta">90 / 150 g</div>
+      </div>
+      <div class="price">130<span class="sep">/</span>140<span class="unit">kr</span></div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="name-row">
+          <h3>Cheese <em>Burger</em></h3>
+        </div>
+        <div class="desc">Cheddar, ketchup, senap, picklad lök, tomat, sallad &mdash; rakt och rent.</div>
+        <div class="meta">90 / 150 g</div>
+      </div>
+      <div class="price">120<span class="sep">/</span>130<span class="unit">kr</span></div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="name-row">
+          <h3>Big <em>Bacon</em></h3>
+        </div>
+        <div class="desc">Dubbel bacon, dubbelt cheddar, dubbel patty &mdash; för den som spelar för att vinna.</div>
+        <div class="meta">90 / 180 g &nbsp;·&nbsp; Single &amp; Double</div>
+      </div>
+      <div class="price">140<span class="sep">/</span>200<span class="unit">kr</span></div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="name-row">
+          <h3>Halloumi <em>Burgare</em></h3>
+          <span class="tag veg">Veg</span>
+        </div>
+        <div class="desc">Halloumi, potatisbröd, avocadodressing, srirachamayo, picklad lök, sallad, tomat.</div>
+      </div>
+      <div class="price">120<span class="unit">kr</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ PIZZA ============ -->
+<section class="cat" id="pizza">
+  <div class="cat-head">
+    <div class="titles">
+      <div class="index"><span class="dot"></span> Kapitel II &nbsp;/&nbsp; 04</div>
+      <h2>Pizza <em>Neapoli</em></h2>
+    </div>
+    <div class="sub">Lågjäst surdeg, 60 timmar i kyla, bakad i 450°. San Marzano från jorden under Vesuvius. Inget mer, inget mindre.</div>
+  </div>
+
+  <div class="items">
+
+    <div class="item">
+      <div>
+        <div class="name-row">
+          <h3><em>Margherita</em></h3>
+        </div>
+        <div class="desc">San Marzano-tomat, fior di latte, färsk basilika, extra vergine.</div>
+      </div>
+      <div class="price">140<span class="unit">kr</span></div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="name-row">
+          <h3>Salami <em>Napoli</em></h3>
+        </div>
+        <div class="desc">San Marzano, salami napoli, fior di latte, basilika.</div>
+      </div>
+      <div class="price">150<span class="unit">kr</span></div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="name-row">
+          <h3><em>Mortadella</em></h3>
+        </div>
+        <div class="desc">San Marzano, mortadella di Bologna, fior di latte, basilika &mdash; pålägget tillsätts efter ugn.</div>
+      </div>
+      <div class="price">150<span class="unit">kr</span></div>
+    </div>
+
+    <div class="feature">
+      <div class="photo">
+        <div class="slot-label">[ hero shot &mdash; pizza nr.72 special, top-down ]</div>
+      </div>
+      <div>
+        <div class="label">Eldigt &amp; Komplext</div>
+        <h3>Nr.72 <em>Speciale</em></h3>
+        <p>Spicy salami napoli, fior di latte, basilika och husets specialsås &mdash;
+          en långsam värme som hänger kvar längst bak i gommen.</p>
+      </div>
+      <div class="price">160<span class="unit">kr</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ INTERMISSION ============ -->
+<div class="quote">
+  <div class="mark">&mdash;</div>
+  <q>Bra mat behöver ingen översättning.<br/>Bara värme, ljus och tid.</q>
+  <div class="attr">Köksfilosofi</div>
+</div>
+
+<!-- ============ SPECIAL ============ -->
+<section class="cat" id="special">
+  <div class="cat-head">
+    <div class="titles">
+      <div class="index"><span class="dot"></span> Kapitel III &nbsp;/&nbsp; 04</div>
+      <h2>Special &amp; <em>Sallader</em></h2>
+    </div>
+    <div class="sub">Husmanskost och rena salladsskålar &mdash; för dagar då man vill sitta länge och prata mycket.</div>
+  </div>
+
+  <div class="items">
+
+    <div class="feature">
+      <div class="photo">
+        <div class="slot-label">[ hero shot &mdash; fläskfilemedaljonger, candle-lit ]</div>
+      </div>
+      <div>
+        <div class="label">Husets Klassiker</div>
+        <h3>Fläskfile&shy;<em>medaljonger</em></h3>
+        <p>Möra medaljonger på spett, smörstekta. Serveras med örtsmör, sidsallad och husets crispy fries.</p>
+      </div>
+      <div class="price">180<span class="unit">kr</span></div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="name-row">
+          <h3>Currywurst &amp; <em>Fries</em></h3>
+        </div>
+        <div class="desc">Berlinerstyle korv i kryddig currysås. Pommes vid sidan.</div>
+      </div>
+      <div class="price">85<span class="unit">kr</span></div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="name-row">
+          <h3>Kycklingfilé <em>Sallad</em></h3>
+        </div>
+        <div class="desc">Kycklingfilé, gurka, tomat, krutonger, ägg, rödlök, ost, hemmagjord dressing, bröd.</div>
+      </div>
+      <div class="price">140<span class="unit">kr</span></div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="name-row">
+          <h3>Räk<em>sallad</em></h3>
+        </div>
+        <div class="desc">Handskalade räkor, gurka, tomat, krutonger, ägg, rödlök, citron, hemmagjord dressing, bröd.</div>
+      </div>
+      <div class="price">150<span class="unit">kr</span></div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="name-row">
+          <h3><em>Italia</em></h3>
+        </div>
+        <div class="desc">Skinka, gurka, sallad, tomat, ägg, rödlök, mozzarella fior di latte, krutonger, hemmagjord dressing, bröd.</div>
+      </div>
+      <div class="price">130<span class="unit">kr</span></div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="name-row">
+          <h3><em>Halloumi</em></h3>
+          <span class="tag veg">Veg</span>
+        </div>
+        <div class="desc">Skiva grillad halloumi, gurka, sallad, tomat, ägg, rödlök, ost, krutonger, hemmagjord dressing, bröd.</div>
+      </div>
+      <div class="price">120<span class="unit">kr</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ SMÅ MAT / DESSERT ============ -->
+<section class="cat" id="sma">
+  <div class="cat-head">
+    <div class="titles">
+      <div class="index"><span class="dot"></span> Kapitel IV &nbsp;/&nbsp; 04</div>
+      <h2>Små <em>&amp;</em> Söta</h2>
+    </div>
+    <div class="sub">Att dela. Att avsluta. Att ha som ursäkt för en till.</div>
+  </div>
+
+  <div class="grid-2">
+
+    <div>
+      <div class="col-head"><span>Att börja med</span><span class="idx">i</span></div>
+
+      <div class="small-item">
+        <div class="nm">Mozzarella Sticks <em>· 4 / 6 st</em></div>
+        <div class="pr">45 / 65</div>
+      </div>
+      <div class="small-item">
+        <div class="nm">Crispy Fries <em>· liten</em></div>
+        <div class="pr">25</div>
+      </div>
+      <div class="small-item">
+        <div class="nm">Crispy Fries <em>· stor</em></div>
+        <div class="pr">35</div>
+      </div>
+
+      <div style="height:36px;"></div>
+
+      <div class="col-head"><span>Att avsluta med</span><span class="idx">ii</span></div>
+
+      <div class="small-item">
+        <div class="nm">Churros <em>· vaniljglass, topping</em></div>
+        <div class="pr">75</div>
+      </div>
+      <div class="small-item">
+        <div class="nm">Våfflor <em>· hemmagjord, grädde, glass</em></div>
+        <div class="pr">65</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="col-head"><span>Kaffe</span><span class="idx">iii</span></div>
+
+      <div class="small-item"><div class="nm">Americano</div><div class="pr">25</div></div>
+      <div class="small-item"><div class="nm">Espresso</div><div class="pr">39</div></div>
+      <div class="small-item"><div class="nm">Cappuccino</div><div class="pr">58</div></div>
+
+      <div style="height:36px;"></div>
+
+      <div class="col-head"><span>Barn</span><span class="idx">iv</span></div>
+
+      <div class="small-item">
+        <div class="nm">Burger Barn Meal <em>· 60 g</em></div>
+        <div class="pr">79</div>
+      </div>
+      <div class="small-item">
+        <div class="nm">Nuggets Meal <em>· 6 / 9 st</em></div>
+        <div class="pr">69 / 79</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ DRYCK ============ -->
+<section class="cat" id="dryck">
+  <div class="cat-head">
+    <div class="titles">
+      <div class="index"><span class="dot"></span> Bar</div>
+      <h2><em>Dryck</em></h2>
+    </div>
+    <div class="sub">Alkoholfritt och &mdash; senare på kvällen &mdash; allt det andra.</div>
+  </div>
+
+  <div class="grid-2">
+
+    <div>
+      <div class="col-head"><span>Alkoholfritt</span><span class="idx">a</span></div>
+      <div class="small-item"><div class="nm">Pepsi · Pepsi Max</div><div class="pr">20</div></div>
+      <div class="small-item"><div class="nm">Zingo · Zingo Zero</div><div class="pr">20</div></div>
+      <div class="small-item"><div class="nm">Fanta Exotic</div><div class="pr">20</div></div>
+      <div class="small-item"><div class="nm">Trocadero · Zero</div><div class="pr">20</div></div>
+      <div class="small-item"><div class="nm">7 Up · 7 Up Zero</div><div class="pr">20</div></div>
+      <div class="small-item"><div class="nm">Loka Naturell · Citron</div><div class="pr">20</div></div>
+      <div class="small-item"><div class="nm">Melleruds <em>· alkoholfri</em></div><div class="pr">55</div></div>
+      <div class="small-item"><div class="nm">Krombacher 0,33 <em>· 0,0 %</em></div><div class="pr">65</div></div>
+    </div>
+
+    <div>
+      <div class="col-head"><span>Öl &amp; Vin <span style="color:var(--text-mute); margin-left:8px;">— senare</span></span><span class="idx">b</span></div>
+      <div class="small-item"><div class="nm">Norrlands Guld <em>· 0,5 l</em></div><div class="pr">79</div></div>
+      <div class="small-item"><div class="nm">Budvar <em>· 0,5 l</em></div><div class="pr">89</div></div>
+      <div class="small-item"><div class="nm">Staropramen <em>· 0,5 l</em></div><div class="pr">69</div></div>
+      <div class="small-item"><div class="nm">Grängesberg <em>· 3,5 %, 0,33 l</em></div><div class="pr">55</div></div>
+      <div class="small-item"><div class="nm">Schneider Weisse <em>· 0,5 l</em></div><div class="pr">89</div></div>
+
+      <div style="height:24px;"></div>
+
+      <div class="small-item"><div class="nm">Vin · Rött <em>· 0,2 l</em></div><div class="pr">79</div></div>
+      <div class="small-item"><div class="nm">Vin · Vitt <em>· 0,2 l</em></div><div class="pr">79</div></div>
+      <div class="small-item"><div class="nm">Vin · Rosé <em>· 0,2 l</em></div><div class="pr">75</div></div>
+      <div class="small-item"><div class="nm">Pärlande <em>· 0,2 l</em></div><div class="pr">89</div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ HOURS ============ -->
+<section class="hours-section" id="hours">
+  <div>
+    <h2>Öppet<br/><em>tider</em></h2>
+    <p class="sub">Vi tar emot bokningar via telefon. Köket stänger 30 minuter före stängning.
+       Större sällskap &mdash; hör av er en dag i förväg.</p>
+  </div>
+  <div class="hours-grid">
+    <div class="day"><span class="d">Måndag</span><span class="h">11 — 19</span></div>
+    <div class="day"><span class="d">Fredag</span><span class="h">11 — 20</span></div>
+    <div class="day"><span class="d">Tisdag</span><span class="h">11 — 19</span></div>
+    <div class="day"><span class="d">Lördag</span><span class="h">14 — 20</span></div>
+    <div class="day"><span class="d">Onsdag</span><span class="h">11 — 19</span></div>
+    <div class="day"><span class="d">Söndag</span><span class="h closed">Stängt</span></div>
+    <div class="day"><span class="d">Torsdag</span><span class="h">11 — 19</span></div>
+    <div class="day"><span class="d" style="color:var(--text-dim);">&nbsp;</span><span class="h">&nbsp;</span></div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="col">
+    <h4>Adress</h4>
+    <p>Nr. 72 Mat &amp; Bar AB<br/>Backe, Sverige</p>
+  </div>
+  <div class="col">
+    <h4>Kontakt</h4>
+    <p>bord@nr72.se<br/>+46 — — —</p>
+  </div>
+  <div class="col">
+    <h4>Följ Oss</h4>
+    <p>Facebook · Instagram</p>
+  </div>
+  <div class="signoff">
+    <span>© Nr. 72 Mat &amp; Bar AB · MMXXVI</span>
+    <span class="njut">njut av maten</span>
+    <span>Meny v.2026.01</span>
+  </div>
+</footer>
+
+</body>
+</html>
